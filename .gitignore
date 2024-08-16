@@ -1,0 +1,13 @@
+__pycache__
+.vscode
+node_modules
+.cache
+.DS_Store
+
+# Do not track build artifacts/generated files
+models
+onnx
+*.onnx
+
+# Do not track coverage reports
+/coverage
