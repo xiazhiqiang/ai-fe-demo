@@ -56,11 +56,15 @@ let tokenizer = await GPT2Tokenizer.from_pretrained("Xenova/gpt2");
 let model = await GPT2Model.from_pretrained("Xenova/gpt2");
 status.textContent = "Ready";
 
-let text = "generate random name: ";
+let text = "Once upon a time,";
 let encoded_input = await tokenizer(text, { return_tensors: "pt" });
 let outputs = await model.generate(encoded_input.input_ids, {
-  max_length: 10,
+  max_new_tokens: 20,
+  do_sample: true,
+  top_k: 5,
+  num_return_sequences: 5,
 });
+console.log("output", outputs);
 let decoded = await tokenizer.decode(outputs[0], {
   skip_special_tokens: true,
 });
